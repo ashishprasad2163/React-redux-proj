@@ -9,7 +9,7 @@ const SongList = (props) => {
     const handleChange = (e) => {
         props.addSong(e.target.value)
         setName(e.target.value)
-    }
+    };
 
     return (
         <div>
