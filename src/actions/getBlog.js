@@ -10,6 +10,6 @@ export const getBlogData = () =>
                 payload: data
             })
         } catch (error) {
-            console.log("################",error);
+            alert(error);
         }
     };
