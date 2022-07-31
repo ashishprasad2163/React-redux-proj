@@ -15,7 +15,7 @@ const Blog = ({ getBlogData, blogs }) => {
                         <div key={blog.id}>
                             <BlogDetail title={blog.title} />
                             <br />
-                            <BlogAuthor author={blog.userId} />
+                            <BlogAuthor authorId={blog.userId} />
                         </div>
                     ))) : <div>
                         Fetching failed
