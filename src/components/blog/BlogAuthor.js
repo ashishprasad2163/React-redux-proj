@@ -1,26 +1,14 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getAuthorData } from '../../actions/getAuthor';
-import PropsTypes from 'prop-types';
 
-const BlogAuthor = ({ authorId, author: { name }, getAuthorData, }) => {
-    useEffect(() => {
-        getAuthorData(authorId)
-    }, []);
+const BlogAuthor = ({ authorId }) => {
 
-    console.log("useruserx name", name);
+    console.log("user page", authorId);
     return (
         <div>
-            Author name is : {name}
+            Author name is : {authorId}
         </div>
     )
 };
 
-const mapStateToProps = state => {
-    return {
-        author: state.authorReducer.author,
-        // user: state.authorReducer.users.filter((user) => user.id === ownProps.id),
-    }
-}
 
-export default connect(mapStateToProps, { getAuthorData })(BlogAuthor);
+export default BlogAuthor;

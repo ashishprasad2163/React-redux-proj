@@ -3,15 +3,16 @@ import {
 } from '../actions/types.js';
 
 const initialState = {
-    author: {},
+    authors: [],
 };
 
 export default (state = initialState, action) => {
+    console.log("author data", action.payload);
     switch (action.type) {
         case GET_BLOG_AUTHOR:
             return {
                 ...state,
-                author: action.payload.data
+                authors: state.authors.concat(action.payload)
             }
 
         default:
