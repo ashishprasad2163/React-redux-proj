@@ -7,7 +7,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-    console.log("author data", action.payload);
     switch (action.type) {
         case GET_BLOG_AUTHOR:
             return {

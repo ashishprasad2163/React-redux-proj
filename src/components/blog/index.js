@@ -13,16 +13,15 @@ const Blog = ({ getBlogData, blogs, getAuthorData, ids, authors }) => {
             <div>
                 {
                     blogs && blogs.length ? (blogs.map((blog) => {
-                        console.log("blog", blog);
-                        console.log("test;;", authors.find((author) => author.id === blog.userId));
-
-                        <div key={blog.id}>
-                            <BlogDetail title={blog.title} />
-                            <br />
-                            {/* {authors.find((author) => author.id === blog.id)} */}
-                            {/* <BlogAuthor authorId={authors.find((author) => author.id === blog.userId)} /> */}
-                            <BlogAuthor authorId={authors} />
-                        </div>
+                        // console.log("test;;", authors.find((author) => author.id === blog.userId));
+                        return (
+                            <div key={blog.id}>
+                                <BlogDetail title={blog.title} />
+                                <br />
+                                {/* <BlogAuthor authorId={authors.find((author) => author.id === blog.userId)} /> */}
+                                <BlogAuthor authors={authors} id={blog.userId} />
+                            </div>
+                        )
                     })) : <div>
                         Fetching failed
                     </div>
@@ -34,10 +33,12 @@ const Blog = ({ getBlogData, blogs, getAuthorData, ids, authors }) => {
 
         const getBlog = async () => {
             await getBlogData();
-            ids.map(async (id) => await getAuthorData(id.userId));
+            console.log("fetched blogs");
+             ids.map((id) => getAuthorData(id));
+            console.log("fetching authors");
         }
         getBlog();
-        console.log("fetched blogs");
+
     }, []);
     return (
         <div>
@@ -49,7 +50,7 @@ const Blog = ({ getBlogData, blogs, getAuthorData, ids, authors }) => {
 const mapStateToProps = state => {
     return {
         blogs: state.blogReducer.blogs,
-        ids: state.blogReducer.blogs.filter((blog) => blog.id),
+        ids: [...new Set(state.blogReducer.blogs.map((blog) => blog.userId))],
         authors: state.authorReducer.authors,
     }
 }
