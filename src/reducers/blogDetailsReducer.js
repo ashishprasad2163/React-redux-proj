@@ -7,6 +7,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+    console.log("reducer",action.payload);
     switch (action.type) {
         case GET_BLOG_DETAILS:
             return {

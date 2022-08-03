@@ -7,7 +7,7 @@ import Blog from './components/blog';
 function App() {
   return (
     <Provider store={store}>
-      {/* <SongList /> */}
+      <SongList />
       <hr/>
       <Blog />
     </Provider>
