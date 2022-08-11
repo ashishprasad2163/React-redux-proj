@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import BlogAuthor from './BlogAuthor';
+import React, { useEffect, Suspense, lazy } from 'react';
+// import BlogAuthor from './BlogAuthor';
 import BlogDetail from './BlogDetail';
 import { connect } from 'react-redux';
 import { getBlogData } from '../../actions/getBlog';
 
+const BlogAuthor = lazy(() => import('./BlogAuthor'));
 
 const Blog = ({ getBlogData, blogs, authors }) => {
     console.log("authors", authors);
@@ -16,7 +17,11 @@ const Blog = ({ getBlogData, blogs, authors }) => {
                             <div key={blog.id}>
                                 <BlogDetail title={blog.title} />
                                 <br />
-                                <BlogAuthor author={authors.find((author) => author.id === blog.userId)} />
+                                <Suspense fallback={<div>
+                                    Loading...
+                                </div>}>
+                                    <BlogAuthor author={authors.find((author) => author.id === blog.userId)} />
+                                </Suspense>
                             </div>
                         )
                     })) : <div>
